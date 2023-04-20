@@ -14,7 +14,6 @@ export class CameraManager{
         this.element.addEventListener("keyup", (e) => this.keyUp(e));
     }
     keyDown(e){
-        console.log(e.keyCode)
         if(!this.down.includes(e.keyCode)){
             this.down.push(e.keyCode);
         }

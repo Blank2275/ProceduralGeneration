@@ -9,7 +9,7 @@ let entityArray = Object.values(entities);
 let camera: Camera = new Camera(0, 0);
 let manager: DisplayManager = new DisplayManager(camera);
 
-let grid = generateTerrain(100, 100);
+let grid = generateTerrain(1000, 1000);
 
 let canvas = manager.genCanvas(window.innerWidth / 1.1, window.innerHeight / 1.1, 4);
 document.body.appendChild(canvas);
