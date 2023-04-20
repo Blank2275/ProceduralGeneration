@@ -11,7 +11,7 @@ export function generateTerrain(w, h){
     let humidityInfluences: number[] = [30, 15, 15, 20];
     let humidityMap: number[][] = generateMap(w, h, humidityScales, humidityInfluences);
 
-    let tempScales: number[] = [40, 20, 10, 5];
+    let tempScales: number[] = [80, 40, 20, 10];
     let tempInfluences: number[] = [30, 15, 20, 10];
     let tempMap: number[][] = generateMap(w, h, tempScales, tempInfluences);
 
@@ -45,11 +45,22 @@ function getEntity(biome): number{
     if(biome === 7)
         if(Math.random() < 0.06)
             return 2;
+    if(biome === 6)
+        if(Math.random() < 0.35)
+            return 1;
+    if(biome === 9)
+        if(Math.random() < 0.1)
+            return 0;
+    if(biome === 1){
+        let num = Math.random();
+        if(num > 0 && num < 0.02) return 3;
+        if(num > 0.02 && num < 0.04) return 4;
+    }
     return -1;
 }
 
 function getBiome(height: number, humidity: number, temp: number): number{
-    let options = [0, 3, 6, 1, 7, 8, 2, 4, 5];
+    let options = [0, 3, 9, 6, 1, 7, 8, 2, 4, 5];
     if(temp < -10){
         options = remove(options, [2]);
     }
@@ -65,6 +76,10 @@ function getBiome(height: number, humidity: number, temp: number): number{
         options = remove(options, [4, 5]);
     }
     
+    if(temp < -35){
+        options = remove(options, [3]);
+    }
+
     if(humidity < -10){
         options = remove(options, [5, 3, 6, 1]);
     }
