@@ -9,16 +9,6 @@ let entityArray = Object.values(entities);
 let camera: Camera = new Camera(0, 0);
 let manager: DisplayManager = new DisplayManager(camera);
 
-// let grid: number[][] = [];
-// let gWidth: number = 60;
-// let gHeight: number = 60;
-// for(let y = 0; y < gHeight; y++){
-//     grid.push([]);
-//     for(let x = 0; x < gWidth; x++){
-//         let color = Math.floor(Math.random() * colorArray.length);
-//         grid[grid.length - 1].push(color);
-//     }
-// }
 let grid = generateTerrain(100, 100);
 
 let canvas = manager.genCanvas(window.innerWidth / 1.1, window.innerHeight / 1.1, 4);
