@@ -3,7 +3,7 @@ import { entities } from "../../assets/test/images";
 const noise2D = createNoise2D();
 
 export function generateTerrain(w, h){
-    let hmScales = [100, 20, 5, 1];
+    let hmScales = [50, 15, 4, 1];
     let hmInfluences = [60, 15, 5, 2];
     let heightMap: number[][] = generateMap(w, h, hmScales, hmInfluences);
     let map: number[][][] = [];
