@@ -12,7 +12,7 @@ export function generateTerrain(w, h){
     let humidityMap: number[][] = generateMap(w, h, humidityScales, humidityInfluences);
 
     let tempScales: number[] = [80, 40, 20, 10];
-    let tempInfluences: number[] = [30, 15, 20, 10];
+    let tempInfluences: number[] = [30, 15, 20, 2];
     let tempMap: number[][] = generateMap(w, h, tempScales, tempInfluences);
 
     //account for elevation in temperature
@@ -65,7 +65,13 @@ function getEntity(biome): number{
 }
 
 function getBiome(height: number, humidity: number, temp: number): number{
-    let options = [0, 3, 9, 6, 1, 7, 8, 2, 4, 5];
+    let options = [0, 10, 11, 3, 9, 6, 1, 7, 8, 2, 4, 5];
+    if(temp < 0){
+        options = remove(options, [0, 10]);
+    }
+    if(temp > 20){
+        options = remove(options, [0, 11])
+    }
     if(temp < -10){
         options = remove(options, [2]);
     }
