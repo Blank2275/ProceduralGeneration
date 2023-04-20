@@ -3,8 +3,8 @@ import { entities } from "../../assets/test/images";
 const noise2D = createNoise2D();
 
 export function generateTerrain(w, h){
-    let hmScales = [50, 15, 4, 1];
-    let hmInfluences = [60, 15, 5, 2];
+    let hmScales = [50, 15, 4, 1, 10];
+    let hmInfluences = [60, 15, 5, 2, 20];
     let heightMap: number[][] = generateMap(w, h, hmScales, hmInfluences);
     let map: number[][][] = [];
 
@@ -22,14 +22,19 @@ export function generateTerrain(w, h){
 function getEntity(biome): number{
     if(biome === 2)
         if(Math.random() < 0.05)
+            return 1
+    if(biome === 3)
+        if(Math.random() < 0.4)
             return 0
     return -1;
 }
 
 function getBiome(height): number{
-    if(height > 55){
-        return 4
-    } else if(height > 45){
+    if(height > 60){
+        return 5
+    } else if(height > 50){
+        return 4;
+    } else if(height > 36){
         return 3;
     } else if(height > 25){
         return 2;
