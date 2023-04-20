@@ -6,8 +6,10 @@ export class DisplayManager{
     width: number;
     height: number;
     resolution: number;
+    entityOffsets: number[][][];
     constructor(camera: Camera){
-        this.camera = camera;   
+        this.camera = camera;  
+        this.entityOffsets = [];
     }
     genCanvas(width, height, resolution){
         this.width = width;
@@ -22,7 +24,20 @@ export class DisplayManager{
 
         return this.canvas;
     }
+    generateEntityOffsets(w: number, h: number){
+        for(let y = 0; y < h; y++){
+            this.entityOffsets.push([]);
+            for(let x = 0; x < w; x++){
+                let xOffset: number = Math.random() * 2 - 1;
+                let yOffset: number = Math.random() * 2 - 1;
+                this.entityOffsets[this.entityOffsets.length - 1].push([xOffset, yOffset]);
+            }
+        }
+    }
     drawGrid(grid: any[][], size: number, colors, entities){
+        if(!(this.entityOffsets.length === grid.length)){
+            this.generateEntityOffsets(grid[0].length, grid.length);
+        }
         let adjustedWidth = this.width * this.resolution;
         let adjustedHeight = this.height * this.resolution;
         let numVisibleX = Math.ceil(this.width / size + 1 );
@@ -45,7 +60,9 @@ export class DisplayManager{
 
                 if(entityIndex != -1){
                     let entity = entities[grid[y][x][1]];
-                    this.ctx.drawImage(entity, drawX, drawY, size * this.resolution + 0.5, size * this.resolution + 0.5);
+                    let xOffset = this.entityOffsets[y][x][0];
+                    let yOffset = this.entityOffsets[y][x][1];
+                    this.ctx.drawImage(entity, drawX + xOffset * this.resolution, drawY + yOffset * this.resolution, size * this.resolution + 0.5, size * this.resolution + 0.5);
                 }
             }
         }
@@ -58,8 +75,10 @@ export class DisplayManager{
 export class Camera{
     x: number;
     y: number;
-    constructor(x: number, y: number){
+    zoom: number;
+    constructor(x: number, y: number, zoom: number){
         this.x = x;
         this.y = y;
+        this.zoom = zoom;
     }
 }

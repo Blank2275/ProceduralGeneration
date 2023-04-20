@@ -1,4 +1,4 @@
-import { Camera } from "../../display/display";
+import { Camera } from "./display";
 export class CameraManager{
     camera: Camera;
     element: HTMLElement;
@@ -36,6 +36,14 @@ export class CameraManager{
         }
         if(this.down.includes(37)){
             this.camera.x -= this.speed;
+        }
+        if(this.down.includes(16)){//shift
+            if(this.camera.zoom < 300)
+                this.camera.zoom += 0.5;
+        } 
+        if(this.down.includes(17)){//ctrl
+            if(this.camera.zoom > 3.5)
+                this.camera.zoom -= 0.5;
         }
     }
 }

@@ -2,11 +2,11 @@ import { DisplayManager, Camera } from "../../display/display";
 import { colors } from "../../assets/test/colors";
 import { entities } from "../../assets/test/images";
 import { generateTerrain } from "./generate";
-import { CameraManager } from "./camera";
+import { CameraManager } from "../../display/camera";
 let colorArray = Object.values(colors);
 let entityArray = Object.values(entities);
 
-let camera: Camera = new Camera(0, 0);
+let camera: Camera = new Camera(0, 0, 30);
 let manager: DisplayManager = new DisplayManager(camera);
 
 let grid = generateTerrain(1000, 1000);
@@ -22,7 +22,7 @@ function animate(){
     cameraManager.update()
 
     manager.clear();
-    manager.drawGrid(grid, 30, colorArray, entityArray);
+    manager.drawGrid(grid, camera.zoom, colorArray, entityArray);
     requestAnimationFrame(animate);
 }
 
