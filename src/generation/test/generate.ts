@@ -101,7 +101,7 @@ function getBiome(height: number, humidity: number, temp: number): number{
         options = remove(options, [4]);
     }
     if(height > 17){
-        options = remove(options, [0]);
+        options = remove(options, [0, 10, 11]);
     }
     if(humidity > 20){
         options = remove(options, [1]);
