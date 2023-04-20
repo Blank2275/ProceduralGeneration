@@ -1,0 +1,17 @@
+{
+    "name": "proceduralgeneration",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "vite": "vite ."
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "simplex-noise": "^4.0.1",
+        "typescript": "^5.0.4",
+        "vite": "^4.2.2"
+    }
+}
