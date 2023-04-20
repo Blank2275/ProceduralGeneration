@@ -42,9 +42,14 @@ function getEntity(biome): number{
     if(biome === 3)
         if(Math.random() < 0.4)
             return 0;
-    if(biome === 7)
+    if(biome === 7){
         if(Math.random() < 0.06)
-            return 2;
+                    return 2;
+        if(Math.random() < 0.005)
+            return 3;
+        if(Math.random() < 0.005)
+            return 4;
+    }
     if(biome === 6)
         if(Math.random() < 0.35)
             return 1;
